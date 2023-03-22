@@ -2,28 +2,6 @@ import { galleryItems } from './gallery-items';
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 
-let gallery = new SimpleLightbox('.gallery__item', {
-  captions: true,
-  captionDelay: 250,
-  captionsData: 'alt',
-  captionPosition: 'bottom',
-});
-
-// const makeElementOfGallery = ({ preview, original, description }) => {
-//   return `
-//       <a class="gallery__item" href="${original}">
-//         <img class="gallery__image" src="${preview}" alt="${description}" />
-//       </a>
-//       `;
-// };
-
-// const makeElements = galleryItems.map(makeElementOfGallery).join('');
-
-// const galleryEl = document.querySelector('.gallery');
-// galleryEl.insertAdjacentHTML('afterbegin', makeElements);
-
-// new SimpleLightbox('.gallery a', { captionsData: 'alt', captionDelay: 250 });
-
 const galleryEl = document.querySelector('.gallery');
 const addGalleryItems = galleryItems
   .map(
@@ -33,3 +11,8 @@ const addGalleryItems = galleryItems
   )
   .join('');
 galleryEl.insertAdjacentHTML('afterbegin', addGalleryItems);
+
+new SimpleLightbox('.gallery a', {
+  captionsData: 'alt',
+  captionDelay: 250,
+});
