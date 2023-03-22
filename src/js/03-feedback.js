@@ -11,7 +11,7 @@ const formObject = {};
 let localObject;
 
 function checkFild() {
-  localObject = JSON.parse(localStorage.getItem(STORAGE_KEY));
+  localObject = JSON.parse(localStorage.getItem(KEY));
 
   if (localObject) {
     localObject.email
@@ -27,7 +27,7 @@ checkFild();
 
 function handleformFildInput(event) {
   formObject[event.target.name] = event.target.value;
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(formObject));
+  localStorage.setItem(KEY, JSON.stringify(formObject));
 }
 
 function handleFormControl(event) {
@@ -36,5 +36,5 @@ function handleFormControl(event) {
   console.log(localObject);
 
   event.target.reset();
-  localStorage.removeItem(STORAGE_KEY);
+  localStorage.removeItem(KEY);
 }
