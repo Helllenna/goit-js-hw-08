@@ -1,4 +1,4 @@
-import Throttle from 'lodash.throttle';
+import throttle from 'lodash.throttle';
 import Player from '@vimeo/player';
 
 const iframe = document.querySelector('iframe');
@@ -15,7 +15,7 @@ function getCurrentTime(ev) {
     player.setCurrentTime(isTime);
     player.off('play', getCurrentTime);
   }
-  player.on('timeupdate', Throttle(CurrentTime, 1000));
+  player.on('timeupdate', throttle(CurrentTime, 1000));
 }
 
 player.on('play', getCurrentTime);
