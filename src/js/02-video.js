@@ -6,16 +6,16 @@ const player = new Player(iframe);
 const KEY = 'videoplayer-current-time';
 let isTime = localStorage.getItem(KEY);
 
-function CurrentTime(ev) {
-  localStorage.setItem(KEY, ev.seconds);
-}
 
-function getCurrentTime(ev) {
-  if (isTime) {
-    player.setCurrentTime(isTime);
-    player.off('play', getCurrentTime);
+player.on('timeupdate', throttle(function (event) {
+  localStorage.setItem(KEY, JSON.stringify(event));
+}, 1000));
+
+function currentTimeOfPlayer() {
+  const time = JSON.parse(isTime);
+
+  if (time) {
+    player.setCurrentTime(time.seconds);
   }
-  player.on('timeupdate', throttle(CurrentTime, 1000));
 }
-
-player.on('play', getCurrentTime);
+currentTimeOfPlayer();
